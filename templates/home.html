@@ -3,44 +3,109 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Minecraft Shape Blueprints</title>
+  <title>Blockprint</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
-  <div class="app">
-    <header class="topbar">
-      <div class="brand">
-        <div class="logoDot"></div>
-        <div>
-          <div class="title">Minecraft Shape Blueprints</div>
-          <div class="subtitle">Pick a generator to start building.</div>
-        </div>
+  <div class="app bpHome">
+    <header class="bpHero">
+      <div class="bpHeroGlow" aria-hidden="true"></div>
+
+      <div class="bpHeroText">
+        <div class="bpKicker">Blockprint</div>
+        <h1 class="bpTitle">Minecraft shapes, printed in blocks.</h1>
+        <p class="bpSub">
+          Clean build maps for circles and domes — with layer-by-layer guides.
+        </p>
+      </div>
+
+      <div class="bpMainGrid">
+        <!-- Circles (big clickable preview) -->
+        <a class="bpMainCard" href="/circles" aria-label="Open Circle Generator">
+          <div class="bpCardTop">
+            <div class="bpCardTitle">Circle Generator</div>
+            <div class="bpCardMeta">2D blueprint • outline/filled</div>
+          </div>
+
+          <div class="bpCanvasWrap">
+            <canvas id="previewCircle" class="bpCanvas" width="900" height="520"></canvas>
+          </div>
+
+          <div class="bpCardBottom">
+            <div class="bpTagRow">
+              <span class="bpTag">Rings</span>
+              <span class="bpTag">Filled</span>
+              <span class="bpTag">Thickness</span>
+            </div>
+            <div class="bpArrow">→</div>
+          </div>
+        </a>
+
+        <!-- Domes (big clickable preview) -->
+        <a class="bpMainCard" href="/dome" aria-label="Open Dome Generator">
+          <div class="bpCardTop">
+            <div class="bpCardTitle">Dome Generator</div>
+            <div class="bpCardMeta">3D preview • layers</div>
+          </div>
+
+          <div class="bpCanvasWrap">
+            <canvas id="previewDome" class="bpCanvas" width="900" height="520"></canvas>
+          </div>
+
+          <div class="bpCardBottom">
+            <div class="bpTagRow">
+              <span class="bpTag">Full dome</span>
+              <span class="bpTag">Layer slider</span>
+              <span class="bpTag">Hollow/shell</span>
+            </div>
+            <div class="bpArrow">→</div>
+          </div>
+        </a>
       </div>
     </header>
 
-    <main class="homeStage">
-      <a class="homeCard" href="/circles">
-        <div class="homeIcon">◯</div>
-        <div class="homeText">
-          <div class="homeTitle">Circle Generator</div>
-          <div class="homeSub">2D blueprint maps • outline/filled • thickness</div>
+    <main class="bpSections">
+      <!-- Coming soon -->
+      <section class="bpSection">
+        <div class="bpSectionHead">
+          <div class="bpSectionTitle">Coming soon</div>
+          <div class="bpSectionSub">More build tools (same blueprint style).</div>
         </div>
-        <div class="homeArrow">→</div>
-      </a>
 
-      <a class="homeCard" href="/dome">
-        <div class="homeIcon">◠</div>
-        <div class="homeText">
-          <div class="homeTitle">Dome Generator</div>
-          <div class="homeSub">3D preview • layer-by-layer build slices</div>
+        <div class="bpSoonGrid">
+          <div class="bpSoonCard">
+            <div class="bpSoonTop">
+              <div class="bpSoonIcon">◉</div>
+              <div class="bpSoonName">Sphere Generator</div>
+            </div>
+            <div class="bpSoonDesc">True spheres with slice navigation.</div>
+            <div class="bpSoonTag">Coming soon</div>
+          </div>
+
+          <div class="bpSoonCard">
+            <div class="bpSoonTop">
+              <div class="bpSoonIcon">▮</div>
+              <div class="bpSoonName">Cylinder Generator</div>
+            </div>
+            <div class="bpSoonDesc">Towers, pipes, round rooms.</div>
+            <div class="bpSoonTag">Coming soon</div>
+          </div>
+
+          <div class="bpSoonCard">
+            <div class="bpSoonTop">
+              <div class="bpSoonIcon">▦</div>
+              <div class="bpSoonName">Pixel Art Planner</div>
+            </div>
+            <div class="bpSoonDesc">Image → blocks with palette presets.</div>
+            <div class="bpSoonTag">Coming soon</div>
+          </div>
         </div>
-        <div class="homeArrow">→</div>
-      </a>
+      </section>
     </main>
 
     <footer class="footer">
-      <div class="footerLeft">© <span id="year"></span> eamcn</div>
+      <div class="footerLeft">© <span id="year"></span> eamcn • Blockprint</div>
 
       <nav class="footerLinks">
         <a class="iconLink" href="https://github.com/eamcn" target="_blank" rel="noopener" aria-label="GitHub">
@@ -67,8 +132,6 @@
     </footer>
   </div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <script src="{{ url_for('static', filename='home.js') }}"></script>
 </body>
 </html>
